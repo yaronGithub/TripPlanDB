@@ -92,6 +92,8 @@ UserId int foreign key References Users(UserId),
 CONSTRAINT PK_FavoritesPlan PRIMARY KEY (PlanId,UserId),
 )
 
+alter table Users
+add PicId int foreign key references Pictures(PicId)
 
 -- Create a login for the admin user
 
