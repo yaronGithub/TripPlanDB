@@ -79,16 +79,17 @@ CONSTRAINT PK_PlanPlace PRIMARY KEY (PlanId,PlaceId)
 create table Pictures
 (
 PicId int primary key identity,
-PlanId int,
-PlaceId int,
-CONSTRAINT FK_PicturesPlan FOREIGN KEY REFERENCES PlacePlace (PlanId,PlaceId),
-PicExt nvarchar(400) not null
+PlanId int foreign key references PlanGroup(PlanId),
+PlaceId int foreign key references Places(PlaceId),
+PicExt nvarchar(400) not null,
+CONSTRAINT FK_PicturesPlan FOREIGN KEY (PlanId,PlaceId) REFERENCES PlanPlace (PlanId,PlaceId)
 )
 
 create table Favorites
 (
-PlanId int primary key References PlanGroup(PlanId),
-UserId int primary key References Users(UserId),
+PlanId int foreign key References PlanGroup(PlanId),
+UserId int foreign key References Users(UserId),
+CONSTRAINT PK_FavoritesPlan PRIMARY KEY (PlanId,UserId),
 )
 
 
